@@ -1,0 +1,5 @@
+install.packages("plumber")
+install.packages("jsonlite")
+install.packages("httr")
+install.packages("googleCloudStorageR")
+install.packages("downloader")
