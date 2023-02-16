@@ -26,6 +26,8 @@ function(codigo = "FP.CPI.TOTL.ZG") {
     name = paste0(codigo, ".csv"),
     predefinedAcl = "bucketLevel"
   )
+  
+  file.remove( list.files(pattern = "*.csv"))
 
   return(codigo)
 }
