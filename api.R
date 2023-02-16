@@ -9,21 +9,24 @@ function() {
 
 
 #* @param codigo Código del indicador del banco mundial
-#* @get /codigo
+#* @get /indicador
 function(codigo = "FP.CPI.TOTL.ZG") {
 
-  url <- paste0("https://xkcd.com/", index_number, "/info.0.json")
-  data <- content(GET(url))
-  data_frame <- as.data.frame(data)
-  write.csv(data_frame, "data_to_upload.csv")
-
+  url <- paste0("https://api.worldbank.org/v2/es/indicator/", 
+                codigo, "?downloadformat=csv")
+  download(url, "archivo.zip", mode = "wb")
+  
+  unzip("archivo.zip")
+  
+  archivo_seleccionado <- list.files(pattern = "^API")
+  
   gcs_upload(
-    file = "data_to_upload.csv",
+    file = archivo_seleccionado,
     bucket = "serviciobm",
-    name = paste0("xkcd_", index_number, ".csv"),
+    name = paste0(codigo, ".csv"),
     predefinedAcl = "bucketLevel"
   )
 
-  return(index_number)
+  return(codigo)
 }
 
