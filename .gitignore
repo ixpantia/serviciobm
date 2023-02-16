@@ -36,7 +36,9 @@ vignettes/*.pdf
 *.knit.md
 
 # R Environment Variables
-.Renviron
+# Los incluimos para facilitar despliegue (ojo no continene secretos
+# solo referencia a secretos)
+#.Renviron
 
 # Secretos
 secretos/
